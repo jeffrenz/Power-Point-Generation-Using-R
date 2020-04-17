@@ -1,0 +1,40 @@
+---
+title: "Contagion Overview by US State"
+author: "Jeff Renz, Brian Liberatore"
+date: "`r Sys.Date()`"
+output: 
+  powerpoint_presentation: 
+    reference_doc: templates/PASS_Template.potx #The templates/PASS_Template.potx has original formatting, which does not render tables correctly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,warn=-1)
+#options(warn=-1)
+```
+
+```{r LoadData, echo=FALSE, warning=FALSE, message=FALSE}
+source("scripts/00_load_libraries.R")
+source("scripts/01_load_data.R")
+source("scripts/02_load_functions.R")
+```
+
+# States most impacted by COVID-19
+```{r States_overview, warning = FALSE, message = FALSE, echo=FALSE, fig.width=12}
+State <- as.factor(state.name[match(data$state, state.abb)])
+
+
+state_summary <- data %>%
+  cbind(State) %>%
+  group_by(State, date) %>%
+  summarise("Total Cases" = sum(cases), "Total Deaths" = sum(deaths)) %>%
+  group_by(State) %>%
+  summarize("Total Cases" = max(`Total Cases`),"Total Deaths" = max(`Total Deaths`)) %>%
+  arrange(desc(`Total Cases`)) %>%
+  head(15)
+
+state_summary$`Total Cases` <- comma(state_summary$`Total Cases`)
+state_summary$`Total Deaths` <- comma(state_summary$`Total Deaths`)
+
+kable(state_summary)
+
+```

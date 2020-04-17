@@ -65,6 +65,10 @@ percent_change_df <- function(x){
     mutate(pct_change = (cum_cases-lag(cum_cases))/lag(cum_cases)) %>%
     mutate(days_to_double = log(2)/(log(1 + pct_change)))
   
+  change_by_state$cum_cases <- comma(change_by_state$cum_cases)
+  
+  
+  
   return(tail(change_by_state,15) %>%
            arrange (desc(date)))
 }
@@ -88,6 +92,8 @@ change_by_state$pct_change <- change_by_state$pct_change %>%
   round(3) %>%
   percent()
 change_by_state$days_to_double <- round(change_by_state$days_to_double,0)
+
+change_by_state$cum_cases <- comma(change_by_state$cum_cases)
 
 colnames(change_by_state) <- c("Date","Cases","Change","Days to double")
 
