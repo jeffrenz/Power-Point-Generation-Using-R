@@ -1,0 +1,1362 @@
+---
+title: "Contagion Overview by US State"
+author: "Jeff Renz, Brian Liberatore"
+date: "`r Sys.Date()`"
+output: 
+  powerpoint_presentation:
+    reference_doc: PASS_Template.potx
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,warn=-1)
+#options(warn=-1)
+```
+
+```{r LoadData, echo=FALSE, warning=FALSE, message=FALSE}
+source("00_load_libraries.R")
+source("01_load_data.R")
+source("02_load_functions.R")
+```
+
+# States most impacted by COVID-19
+```{r States_overview, warning = FALSE, message = FALSE, echo=FALSE, fig.width=12}
+State <- as.factor(state.name[match(data$state, state.abb)])
+
+
+state_summary <- data %>%
+  cbind(State) %>%
+  group_by(State, date) %>%
+  summarise("Total Cases" = sum(cases), "Total Deaths" = sum(deaths)) %>%
+  group_by(State) %>%
+  summarize("Total Cases" = max(`Total Cases`),"Total Deaths" = max(`Total Deaths`)) %>%
+  arrange(desc(`Total Cases`)) %>%
+  head(15)
+
+state_summary$`Total Cases` <- comma(state_summary$`Total Cases`)
+state_summary$`Total Deaths` <- comma(state_summary$`Total Deaths`)
+
+kable(state_summary)
+
+
+
+```
+
+# `r state.name[6]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+state_chart_function(state.abb[6])
+
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[6])
+```
+:::
+::::::::::::::
+# `r state.name[1]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[1])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[1])
+```
+:::
+::::::::::::::
+# `r state.name[1]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[1])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[1])
+```
+:::
+::::::::::::::
+# `r state.name[2]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[2])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[2])
+```
+:::
+::::::::::::::
+# `r state.name[2]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[2])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[2])
+```
+:::
+::::::::::::::
+# `r state.name[3]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[3])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[3])
+```
+:::
+::::::::::::::
+# `r state.name[3]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[3])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[3])
+```
+:::
+::::::::::::::
+# `r state.name[4]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[4])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[4])
+```
+:::
+::::::::::::::
+# `r state.name[4]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[4])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[4])
+```
+:::
+::::::::::::::
+# `r state.name[5]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[5])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[5])
+```
+:::
+::::::::::::::
+# `r state.name[5]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[5])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[5])
+```
+:::
+::::::::::::::
+# `r state.name[6]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[6])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[6])
+```
+:::
+::::::::::::::
+# `r state.name[6]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[6])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[6])
+```
+:::
+::::::::::::::
+# `r state.name[7]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[7])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[7])
+```
+:::
+::::::::::::::
+# `r state.name[7]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[7])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[7])
+```
+:::
+::::::::::::::
+# `r state.name[8]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[8])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[8])
+```
+:::
+::::::::::::::
+# `r state.name[8]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[8])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[8])
+```
+:::
+::::::::::::::
+# `r state.name[9]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[9])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[9])
+```
+:::
+::::::::::::::
+# `r state.name[9]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[9])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[9])
+```
+:::
+::::::::::::::
+# `r state.name[10]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[10])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[10])
+```
+:::
+::::::::::::::
+# `r state.name[10]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[10])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[10])
+```
+:::
+::::::::::::::
+# `r state.name[11]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[11])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[11])
+```
+:::
+::::::::::::::
+# `r state.name[11]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[11])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[11])
+```
+:::
+::::::::::::::
+# `r state.name[12]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[12])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[12])
+```
+:::
+::::::::::::::
+# `r state.name[12]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[12])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[12])
+```
+:::
+::::::::::::::
+# `r state.name[13]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[13])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[13])
+```
+:::
+::::::::::::::
+# `r state.name[13]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[13])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[13])
+```
+:::
+::::::::::::::
+# `r state.name[14]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[14])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[14])
+```
+:::
+::::::::::::::
+# `r state.name[14]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[14])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[14])
+```
+:::
+::::::::::::::
+# `r state.name[15]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[15])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[15])
+```
+:::
+::::::::::::::
+# `r state.name[15]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[15])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[15])
+```
+:::
+::::::::::::::
+# `r state.name[16]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[16])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[16])
+```
+:::
+::::::::::::::
+# `r state.name[16]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[16])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[16])
+```
+:::
+::::::::::::::
+# `r state.name[17]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[17])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[17])
+```
+:::
+::::::::::::::
+# `r state.name[17]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[17])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[17])
+```
+:::
+::::::::::::::
+# `r state.name[18]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[18])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[18])
+```
+:::
+::::::::::::::
+# `r state.name[18]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[18])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[18])
+```
+:::
+::::::::::::::
+# `r state.name[19]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[19])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[19])
+```
+:::
+::::::::::::::
+# `r state.name[19]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[19])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[19])
+```
+:::
+::::::::::::::
+# `r state.name[20]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[20])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[20])
+```
+:::
+::::::::::::::
+# `r state.name[20]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[20])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[20])
+```
+:::
+::::::::::::::
+# `r state.name[21]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[21])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[21])
+```
+:::
+::::::::::::::
+# `r state.name[21]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[21])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[21])
+```
+:::
+::::::::::::::
+# `r state.name[22]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[22])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[22])
+```
+:::
+::::::::::::::
+# `r state.name[22]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[22])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[22])
+```
+:::
+::::::::::::::
+# `r state.name[23]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[23])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[23])
+```
+:::
+::::::::::::::
+# `r state.name[23]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[23])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[23])
+```
+:::
+::::::::::::::
+# `r state.name[24]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[24])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[24])
+```
+:::
+::::::::::::::
+# `r state.name[24]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[24])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[24])
+```
+:::
+::::::::::::::
+# `r state.name[25]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[25])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[25])
+```
+:::
+::::::::::::::
+# `r state.name[25]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[25])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[25])
+```
+:::
+::::::::::::::
+# `r state.name[26]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[26])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[26])
+```
+:::
+::::::::::::::
+# `r state.name[26]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[26])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[26])
+```
+:::
+::::::::::::::
+# `r state.name[27]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[27])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[27])
+```
+:::
+::::::::::::::
+# `r state.name[27]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[27])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[27])
+```
+:::
+::::::::::::::
+# `r state.name[28]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[28])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[28])
+```
+:::
+::::::::::::::
+# `r state.name[28]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[28])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[28])
+```
+:::
+::::::::::::::
+# `r state.name[29]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[29])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[29])
+```
+:::
+::::::::::::::
+# `r state.name[29]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[29])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[29])
+```
+:::
+::::::::::::::
+# `r state.name[30]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[30])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[30])
+```
+:::
+::::::::::::::
+# `r state.name[30]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[30])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[30])
+```
+:::
+::::::::::::::
+# `r state.name[31]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[31])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[31])
+```
+:::
+::::::::::::::
+# `r state.name[31]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[31])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[31])
+```
+:::
+::::::::::::::
+# `r state.name[32]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[32])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[32])
+```
+:::
+::::::::::::::
+# `r state.name[32]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[32])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[32])
+```
+:::
+::::::::::::::
+# `r state.name[33]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[33])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[33])
+```
+:::
+::::::::::::::
+# `r state.name[33]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[33])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[33])
+```
+:::
+::::::::::::::
+# `r state.name[34]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[34])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[34])
+```
+:::
+::::::::::::::
+# `r state.name[34]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[34])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[34])
+```
+:::
+::::::::::::::
+# `r state.name[35]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[35])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[35])
+```
+:::
+::::::::::::::
+# `r state.name[35]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[35])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[35])
+```
+:::
+::::::::::::::
+# `r state.name[36]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[36])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[36])
+```
+:::
+::::::::::::::
+# `r state.name[36]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[36])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[36])
+```
+:::
+::::::::::::::
+# `r state.name[37]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[37])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[37])
+```
+:::
+::::::::::::::
+# `r state.name[37]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[37])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[37])
+```
+:::
+::::::::::::::
+# `r state.name[38]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[38])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[38])
+```
+:::
+::::::::::::::
+# `r state.name[38]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[38])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[38])
+```
+:::
+::::::::::::::
+# `r state.name[39]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[39])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[39])
+```
+:::
+::::::::::::::
+# `r state.name[39]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[39])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[39])
+```
+:::
+::::::::::::::
+# `r state.name[40]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[40])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[40])
+```
+:::
+::::::::::::::
+# `r state.name[40]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[40])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[40])
+```
+:::
+::::::::::::::
+# `r state.name[41]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[41])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[41])
+```
+:::
+::::::::::::::
+# `r state.name[41]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[41])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[41])
+```
+:::
+::::::::::::::
+# `r state.name[42]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[42])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[42])
+```
+:::
+::::::::::::::
+# `r state.name[42]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[42])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[42])
+```
+:::
+::::::::::::::
+# `r state.name[43]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[43])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[43])
+```
+:::
+::::::::::::::
+# `r state.name[43]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[43])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[43])
+```
+:::
+::::::::::::::
+# `r state.name[44]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[44])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[44])
+```
+:::
+::::::::::::::
+# `r state.name[44]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[44])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[44])
+```
+:::
+::::::::::::::
+# `r state.name[45]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[45])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[45])
+```
+:::
+::::::::::::::
+# `r state.name[45]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[45])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[45])
+```
+:::
+::::::::::::::
+# `r state.name[46]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[46])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[46])
+```
+:::
+::::::::::::::
+# `r state.name[46]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[46])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[46])
+```
+:::
+::::::::::::::
+# `r state.name[47]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[47])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[47])
+```
+:::
+::::::::::::::
+# `r state.name[47]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[47])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[47])
+```
+:::
+::::::::::::::
+# `r state.name[48]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[48])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[48])
+```
+:::
+::::::::::::::
+# `r state.name[48]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[48])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[48])
+```
+:::
+::::::::::::::
+# `r state.name[49]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[49])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[49])
+```
+:::
+::::::::::::::
+# `r state.name[49]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[49])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[49])
+```
+:::
+::::::::::::::
+# `r state.name[50]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[50])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[50])
+```
+:::
+::::::::::::::
+# `r state.name[50]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[50])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[50])
+```
+:::
+::::::::::::::
+
+
+
+
