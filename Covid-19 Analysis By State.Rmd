@@ -4,7 +4,7 @@ author: "Jeff Renz, Brian Liberatore"
 date: "`r Sys.Date()`"
 output: 
   powerpoint_presentation: 
-    reference_doc: templates/PASS_Template.potx
+    reference_doc: templates/PASS_Template_cracked.potx #The templates/PASS_Template.potx has original formatting, which does not render tables correctly
 ---
 
 ```{r setup, include=FALSE}
