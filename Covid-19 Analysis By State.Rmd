@@ -3,8 +3,8 @@ title: "Contagion Overview by US State"
 author: "Jeff Renz, Brian Liberatore"
 date: "`r Sys.Date()`"
 output: 
-  powerpoint_presentation:
-    reference_doc: PASS_Template.potx
+  powerpoint_presentation: 
+    reference_doc: templates/PASS_Template.potx
 ---
 
 ```{r setup, include=FALSE}
@@ -13,9 +13,9 @@ knitr::opts_chunk$set(echo = FALSE,warn=-1)
 ```
 
 ```{r LoadData, echo=FALSE, warning=FALSE, message=FALSE}
-source("00_load_libraries.R")
-source("01_load_data.R")
-source("02_load_functions.R")
+source("scripts/00_load_libraries.R")
+source("scripts/01_load_data.R")
+source("scripts/02_load_functions.R")
 ```
 
 # States most impacted by COVID-19
@@ -36,8 +36,6 @@ state_summary$`Total Cases` <- comma(state_summary$`Total Cases`)
 state_summary$`Total Deaths` <- comma(state_summary$`Total Deaths`)
 
 kable(state_summary)
-
-
 
 ```
 
