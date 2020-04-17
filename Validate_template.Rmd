@@ -38,3 +38,31 @@ state_summary$`Total Deaths` <- comma(state_summary$`Total Deaths`)
 kable(state_summary)
 
 ```
+
+# `r state.name[6]`
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+state_chart_function(state.abb[6])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+state_map_function(state.abb[6])
+```
+:::
+::::::::::::::
+# `r state.name[6]` infection statistics
+:::::::::::::: {.columns}
+::: {.column}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+key_figures(state.abb[6])
+```
+:::
+::: {.column}
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+percent_change_chart(state.abb[6])
+```
+:::
+::::::::::::::
+
