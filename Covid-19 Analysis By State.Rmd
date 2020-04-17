@@ -39,21 +39,7 @@ kable(state_summary)
 
 ```
 
-# `r state.name[6]`
-:::::::::::::: {.columns}
-::: {.column}
-```{r echo=FALSE, message=FALSE, warning=FALSE}
 
-state_chart_function(state.abb[6])
-
-```
-:::
-::: {.column}
-```{r echo=FALSE,message=FALSE,warning=FALSE}
-state_map_function(state.abb[6])
-```
-:::
-::::::::::::::
 # `r state.name[1]`
 :::::::::::::: {.columns}
 ::: {.column}
